@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loader</title>
+    <style>
+      #load {
+        border: 16px solid gray;
+        border-left: 16px solid red;
+        border-right: 16px solid green;
+        width: 200px;
+        border-radius: 50%;
+        height: 200px;
+        animation: load 1s infinite linear, loads 1.5s infinite linear;
+
+        margin: 50% auto;
+      }
+
+      @keyframes load {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes loads {
+        50% {
+          border-left-color: purple;
+          border-right-color: tomato;
+        }
+
+        100% {
+          border-left-color: olive;
+          border-right-color: indianred;
+        }
+      }
+
+      #load:hover {
+        animation-play-state: paused;
+      }
+
+      #load:active {
+        animation-play-state: running;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="load"></div>
+  </body>
+</html>

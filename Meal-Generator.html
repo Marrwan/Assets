@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Meal Generator</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            text-align: center;
+        }
+
+        #meal-thumb {
+            width: 200px;
+            height: 200px;
+        }
+        .items{
+            font-weight: 100;
+        }
+        li{
+            list-style-type: none;
+        }
+    </style>
+</head>
+
+<body>
+    <main >
+        <h1> Feeling Hungry? </h1>
+        <h4> Get a Random Meal by Clicking Below</h4>
+        <button id='button'>Get meal 🍔</button>
+        </h4>
+        <div id='meal-info'></div>
+    </main>
+    <script>
+
+        document.getElementById('button').addEventListener('click', () => {
+            fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+                .then((data) => data.json())
+                .then((data) => {
+                    var output = ''
+                    output = `
+  <div id ='first' style="display: flex;">
+      <div id = 'first-1'>
+           <img id ='meal-thumb' src = '${data.meals[0].strMealThumb}'> 
+           <h3>Category:<span class = 'items'> ${data.meals[0].strCategory}</span></h3>   
+           <h3>Area:<span class = 'items'> ${data.meals[0].strArea}</span></h3> 
+           <h3>Tags:<span class = 'items'> ${data.meals[0].strTags}</span></h3> 
+      <div>
+      <div id = 'first-2'>
+         <h2>${data.meals[0].strMeal}</h2>
+          <p>${data.meals[0].strInstructions}</p>
+      </div>
+      <ul>
+      <h4>Ingredients </h4>
+      <li>${data.meals[0].strIngredient1}</li>
+      <li>${data.meals[0].strIngredient2}</li>
+      <li>${data.meals[0].strIngredient3}</li>
+      <li>${data.meals[0].strIngredient4}</li>
+      <li>${data.meals[0].strIngredient5}</li>
+      <li>${data.meals[0].strIngredient6}</li>
+      <li>${data.meals[0].strIngredient7}</li>
+      <li>${data.meals[0].strIngredient8}</li>
+      <li>${data.meals[0].strIngredient9}</li>
+      <li>${data.meals[0].strIngredient10}</li>
+      </ul>
+      <div class="row">
+			<h2>Video Recipe</h2>
+			<div class="videoWrapper">
+				<iframe width="420" height="315"
+				src="https://www.youtube.com/embed/${data.meals[0].strYoutube.slice(-11)}">
+				</iframe>
+			</div>
+		</div>
+
+ </div>
+`
+                    document.getElementById("meal-info").innerHTML = output;
+                })
+        })
+    </script>
+  
+</body>
+
+</html>

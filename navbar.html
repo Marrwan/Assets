@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nav</title>
+    <link rel="stylesheet" href="./assets/css/main.css" />
+  </head>
+  <style>
+    #container {
+      height: 200px;
+    }
+    @media (min-width: 830px) {
+      #container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-start;
+      }
+      #container div {
+        padding: 10px;
+      }
+    }
+    @media (max-width: 830px) {
+      #container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: flex-start;
+      }
+    }
+    @media (max-width: 530px) {
+      #container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  </style>
+  <body>
+    <div id="container">
+      <div id="home">
+        <a href="" class="icon fa-home">Home</a>
+      </div>
+      <div id="about">
+        <a href="" class="icon fa-question">About</a>
+      </div>
+      <div id="contact">
+        <a href="" class="icon fa-phone">Contact</a>
+      </div>
+      <div id="dogs">
+        <a href="" class="icon fa-paw">Dogs</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajax 1</title>
+  </head>
+  <body>
+    <button id="button">Get Text</button>
+    <div id="text"></div>
+    <script>
+      document.getElementById("button").addEventListener("click", getText);
+      function getText() {
+        var request = new XMLHttpRequest();
+
+        request.open("GET", "users.json", true);
+
+        request.onload = () => {
+          if (this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            var output = "";
+            data.forEach((element) => {
+              output = `
+             <ul>
+               <li>${element.id}</li>
+              <li>${element.name}</li>
+              <li>${element.email}</li>
+              </ul>
+            `;
+              document.getElementById("text").innerHTML += output;
+            });
+          }
+          request.send();
+        };
+        // function getText() {
+        //   fetch("users.json")
+        //     .then((res) => res.json())
+        //     .then((data) => {
+        //       var output = "";
+        //       data.forEach((element) => {
+        //         output = `
+        //         <ul>
+        //         <li>${element.id}</li>
+        //         <li>${element.name}</li>
+        //         <li>${element.email}</li>
+        //         </ul>
+        //       `;
+        //         document.getElementById("text").innerHTML += output;
+        //       });
+        //       console.log(output);
+        //     });
+      }
+    </script>
+  </body>
+</html>

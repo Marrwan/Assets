@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajax 3</title>
+  </head>
+
+  <body>
+    <button id="get">Get GitHub users</button>
+    <h1>GitHub Users</h1>
+    <div id="json"></div>
+    <script>
+      document.getElementById("get").addEventListener("click", getUsers);
+
+      function getUsers() {
+        var request = new XMLHttpRequest();
+
+        request.open("GET", "https://api.github.com/users", true);
+
+        request.onload = function () {
+          if (this.status == 200) {
+            var users = JSON.parse(this.responseText);
+
+            var output = "";
+
+            users.forEach((user) => {
+              output += `
+              <div>
+              <img src = "${user.avatar_url}" width= "70" height="70">
+              <ul>
+              <li> ${user.id}</li>
+              <li> ${user.type}</li>
+              <li> ${user.login}</li>
+              <li> ${user.node_id}</li>
+              </ul>
+              `;
+            });
+            document.getElementById("json").innerHTML = output;
+          }
+        };
+        request.send();
+      }
+
+      // LIVE SERVER
+    </script>
+  </body>
+</html>
